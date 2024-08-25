@@ -79,21 +79,25 @@ a:link{
   
 }
 #name-social-container{
-    margin-top: 10vh;
+  margin-top: 10vh;
+  position: relative;
+  z-index: 0;
 }
 
 .loader{
     position: relative;
+    white-space: nowrap;
 }
 .loader span{
-    position: relative;
-    font-size: 2em;
-    color: #fff;
-    display: inline-block;
-    text-transform: uppercase;
-    animation: animate 2s ease-in-out infinite;
-    animation-delay: calc(0.1s * var(--i));
-    animation-play-state: paused;
+  position: relative;
+  font-size: 2em;
+  color: #fff;
+  display: inline-block;
+  text-transform: uppercase;
+  animation: animate 2s ease-in-out infinite;
+  animation-delay: calc(0.1s * var(--i));
+  animation-play-state: paused;
+  margin: 0 5px; /* Add margin to space out letters */
 }
 .loader:hover span{
     animation-play-state: running;
@@ -114,18 +118,20 @@ a:link{
 }
 
 .social-icons{
-    list-style: none;
-    padding-left: 0px;
-    margin: 0px;
-    cursor: pointer;
-    transition : 0.5s;
+  list-style: none;
+  padding-left: 0px;
+  margin: 0px;
+  cursor: pointer;
+  transition: 0.5s;
+  z-index: 2; /* Increase the z-index to place the icons above the image */
+  position: relative;
 }
 .social-icons li {
   position: relative;
   list-style: none;
   width: 40px;
   height: 40px;
-  display:inline-block;
+  display: inline-block;
   margin: 0px 12px 12px 0px;
   font-family: Verdana, sans-serif;
   gap: 12px;
@@ -139,10 +145,12 @@ a:link{
   
 }
 .social-icons li a i {
-    color: grey;
-    padding: 10px;
-    font-size: 2rem;
-    border-radius: 50%;
+  color: grey;
+  padding: 10px;
+  font-size: 2rem;
+  border-radius: 50%;
+  z-index: 3; /* Ensure the icons themselves are above everything */
+  position: relative;
 }
 .social-icons li a i:hover {
     box-shadow: 0px 0px 6px 4px rgba(230, 196, 196, 0.3);
@@ -193,9 +201,8 @@ section:nth-child(2n+1){
   position: relative;
 }
 #skills{
-  height: 70vh;
-  width: 100%;
-  position: relative;
+  
+  padding-bottom: 4rem;
 }
 #about{
   height: 60vh;
@@ -213,17 +220,20 @@ section:nth-child(2n+1){
   position: relative;
 }
 #my-image{
-  height:10rem;
-  width:10rem;
-  margin:auto;
-  margin-top: -9vh;
+  height: 8rem; /* Adjusted height to make the image smaller */
+  width: 8rem;  /* Adjusted width to make the image smaller */
+  margin: auto;
+  margin-top: -5vh; /* Adjust margin-top as needed */
+  margin-bottom: 2rem;
 }
 #my-image img{
   height: 100%;
   width: 100%; 
   border-radius: 50%;
   box-shadow: 0px 0px 15px #fff;
-   filter: drop-shadow(12px 12px 7px rgba(0,0,0,0.5));
+  filter: drop-shadow(12px 12px 7px rgba(0,0,0,0.5));
+  position: relative;
+  z-index: 1;
 }
 .about-para{
   
@@ -253,17 +263,17 @@ section:nth-child(2n+1){
 } */
 
 .skills-progress {
-  width: 600px;
+  width: 800px; /* Increase the width to accommodate three columns */
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-between; /* Space out the columns */
 }
 
 .skills-progress .btn {
   position: relative;
-  width: 255px;
+  width: 240px; /* Adjust the width to fit three columns */
   height: 50px;
-  margin: 20px;
+  margin: 10px;
 }
 
 .skills-progress .btn a {
@@ -932,7 +942,7 @@ section:nth-child(2n+1){
 }
 
 .popup{
-  width : 400px;
+  width: 90%;
   min-height : 250px;
   background : #fff;
   border-radius: 16px;
@@ -948,6 +958,7 @@ section:nth-child(2n+1){
   visibility: hidden;
   transition: transform 0.4s, top 0.4s;
 }
+
 
 .popup h2{
   color: #333;
@@ -992,6 +1003,26 @@ section:nth-child(2n+1){
 
 @media (max-width: 768px){
 
+  .about-para {
+    font-size: 0.9rem;
+    padding: 10px;
+    text-align: justify;
+  }
+
+  body {
+    font-size: 16px; /* Smaller size for mobile */
+  }
+
+  #my-image {
+    height: 8rem;
+    width: 8rem;
+  }
+
+  .timeline-box,
+  .card-container .card {
+      width: 40%; /* Restore original width on larger screens */
+  }
+
   #contact::before
   {
     transform: translate(-200px,-180px);
@@ -1000,12 +1031,60 @@ section:nth-child(2n+1){
   {
     transform: translate(-200px,-180px);
   }
-  .contact-container
-  {
-    padding : 20px;
+  .contact-container {
+    width: 90%;
+    padding: 20px;
   }
   .contact-container h2
   {
     font-size :28px;
+  }
+
+  .loader span {
+    font-size: 1.5em;
+  }
+
+  #navbar ul {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #navbar.active ul {
+      display: flex;
+  }
+
+  #navbar .menu-toggle {
+      display: block;
+      cursor: pointer;
+      padding: 10px;
+      background: #333;
+      color: #fff;
+      border-radius: 5px;
+  }
+
+  .popup {
+    width: 80%;
+    padding: 15px;
+  }
+
+  .social-icons {
+    margin-top: 1.5rem; /* Adjust the space for smaller screens */
+  }
+
+  #my-image {
+    height: 6rem; /* Further reduce size on smaller screens */
+    width: 6rem;
+  }
+
+  .skills-progress {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .skills-progress .btn {
+      width: 90%; /* Make buttons wider to fit smaller screens */
+      margin: 10px 0;
   }
 }

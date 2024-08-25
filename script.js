@@ -49,3 +49,8 @@ function openPopup() {
 function closePopup() {
     popup.classList.remove("open-popup");
 }
+
+function toggleMenu() {
+    document.getElementById('navbar').classList.toggle('active');
+}
+
